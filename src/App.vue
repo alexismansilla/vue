@@ -2,22 +2,18 @@
   <h1>Memes</h1>
   <h2>{{ $store.state.titleApp }}</h2>
   <button type="button" class="btn btn-primary">Primary</button>
+
+  <ListMemes />
 </template>
 
 <script>
 import { useStore } from "vuex"
+import ListMemes from "./components/ListMemes"
 
 export default {
   name: 'App',
-  setup() {
-    const store = useStore()
-
-    console.log(store.state.titleApp)
-    console.log(store.state.memes)
-
-    return {
-      ...store.state
-    };
+  components: {
+    ListMemes
   }
 }
 </script>
