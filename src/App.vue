@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Memes</h1>
+  <h2>{{ $store.state.titleApp }}</h2>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { useStore } from "vuex"
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    const store = useStore()
+
+    console.log(store.state.titleApp)
+    console.log(store.state.memes)
+
+    return {
+      ...store.state
+    };
   }
 }
 </script>
