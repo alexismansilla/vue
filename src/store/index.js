@@ -11,11 +11,21 @@ export default createStore({
     }
   },
   actions: {
-    async getMemes({ commit }) {
+    async getMemes({ commit }, params) {
       try {
         const response = await fetch("https://api.imgflip.com/get_memes")
         const result = await response.json()
-        commit("setMemes", result.data.memes)
+        
+        if (!params?.total) {
+          commit("setMemes", result.data.memes)
+        } else {
+          const resultTemp = []
+          result.data.memes.forEach((element, index) => {
+           if (index < params.total) resultTemp.push(element)
+          });
+          commit("setMemes", resultTemp)
+        }
+
       } catch (error) {
         console.log(error)
       }
